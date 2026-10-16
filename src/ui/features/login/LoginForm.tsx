@@ -14,9 +14,11 @@ import styles from './LoginForm.module.css';
 
 type LoginFormProps = {
   authenticate: Authenticate;
+  onNavigateRegister?: () => void;
+  successMessage?: string | null;
 };
 
-export function LoginForm({ authenticate }: LoginFormProps) {
+export function LoginForm({ authenticate, onNavigateRegister, successMessage }: LoginFormProps) {
   const { state, change, blur, submit, logout, toggleRemember, showNotice } =
     useLoginForm(authenticate);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -26,6 +28,11 @@ export function LoginForm({ authenticate }: LoginFormProps) {
   useEffect(() => {
     if (state.authError === 'invalid-credentials') passwordRef.current?.focus();
   }, [state.authError]);
+
+  // R012: tras un registro exitoso, el foco queda en un punto lógico de /login.
+  useEffect(() => {
+    if (successMessage) emailRef.current?.focus();
+  }, [successMessage]);
 
   if (state.status === 'welcome' && state.welcomeName) {
     return <WelcomeView name={state.welcomeName} onLogout={logout} />;
@@ -48,6 +55,8 @@ export function LoginForm({ authenticate }: LoginFormProps) {
         <h1 className={styles.title}>Bienvenido de nuevo</h1>
         <p className={styles.subtitle}>Ingresa a tu cuenta para continuar</p>
       </div>
+
+      {successMessage && <Alert tone="info">{successMessage}</Alert>}
 
       <TextField
         label="Correo electrónico"
@@ -108,7 +117,7 @@ export function LoginForm({ authenticate }: LoginFormProps) {
 
       <p className={styles.footer}>
         ¿No tienes cuenta?
-        <Button variant="link" onClick={notAvailable}>
+        <Button variant="link" onClick={onNavigateRegister ?? notAvailable}>
           Regístrate
         </Button>
       </p>

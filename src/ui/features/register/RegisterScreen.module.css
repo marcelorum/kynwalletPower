@@ -1,0 +1,40 @@
+/* FR-019: sin scroll horizontal desde 320px (espejo de LoginScreen). */
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.formPanel {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: var(--neutral-0);
+}
+
+.content {
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (max-width: 479px) {
+  .formPanel {
+    align-items: flex-start;
+    padding: 32px 16px;
+  }
+}
+
+@media (min-width: 960px) {
+  .screen {
+    display: grid;
+    grid-template-columns: 43% 1fr;
+  }
+}
+
+@media (min-width: 1280px) {
+  .screen {
+    grid-template-columns: 620px 1fr;
+  }
+}
