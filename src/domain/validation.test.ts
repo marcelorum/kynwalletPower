@@ -1,5 +1,10 @@
 import { MESSAGES } from './messages';
-import { normalizeEmail, normalizeFullName, validateCredentials, validateRegistration } from './validation';
+import {
+  normalizeEmail,
+  normalizeFullName,
+  validateCredentials,
+  validateRegistration,
+} from './validation';
 
 describe('normalizeEmail', () => {
   it('US1-3: recorta espacios periféricos y convierte a minúsculas', () => {
@@ -95,9 +100,7 @@ describe('validateRegistration (FR-004–FR-008)', () => {
   });
 
   it('FR-004: nombre de 1 carácter visible → NAME_INVALID', () => {
-    expect(validateRegistration({ ...valid, fullName: 'A' }).fullName).toBe(
-      MESSAGES.NAME_INVALID,
-    );
+    expect(validateRegistration({ ...valid, fullName: 'A' }).fullName).toBe(MESSAGES.NAME_INVALID);
   });
 
   it('FR-004: nombre de > 100 caracteres visibles → NAME_INVALID', () => {
@@ -147,9 +150,9 @@ describe('validateRegistration (FR-004–FR-008)', () => {
   });
 
   it('FR-006: contraseña de > 128 caracteres → PASSWORD_TOO_LONG', () => {
-    expect(
-      validateRegistration({ ...valid, password: 'x'.repeat(129) }).password,
-    ).toBe(MESSAGES.PASSWORD_TOO_LONG);
+    expect(validateRegistration({ ...valid, password: 'x'.repeat(129) }).password).toBe(
+      MESSAGES.PASSWORD_TOO_LONG,
+    );
   });
 
   it('la contraseña respeta los espacios: no se recorta', () => {

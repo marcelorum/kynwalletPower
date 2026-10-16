@@ -12,6 +12,4 @@ export type RegistrationErrors = Partial<Record<keyof RegistrationData, string>>
 
 /** Resultado del caso de uso de registro (espejo de AuthResult). */
 export type RegistrationResult =
-  | { kind: 'success' }
-  | { kind: 'invalid'; errors: RegistrationErrors }
-  | { kind: 'unavailable' };
+  { kind: 'success' } | { kind: 'invalid'; errors: RegistrationErrors } | { kind: 'unavailable' };
