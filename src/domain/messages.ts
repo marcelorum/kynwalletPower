@@ -8,4 +8,11 @@ export const MESSAGES = {
   INVALID_CREDENTIALS: 'Correo o contraseña incorrectos',
   UNAVAILABLE: 'Servicio de acceso no disponible. Intenta más tarde.',
   FEATURE_UNAVAILABLE: 'Función no disponible en esta demostración',
+  NAME_REQUIRED: 'Ingresa tu nombre completo',
+  NAME_INVALID: 'El nombre debe tener entre 2 y 100 caracteres',
+  CONFIRM_REQUIRED: 'Confirma tu contraseña',
+  PASSWORDS_MISMATCH: 'Las contraseñas no coinciden',
+  TERMS_REQUIRED: 'Debes aceptar los términos y condiciones',
+  REGISTER_SUCCESS: 'Cuenta creada. Inicia sesión',
+  SOCIAL_COMING_SOON: 'Próximamente',
 } as const;
